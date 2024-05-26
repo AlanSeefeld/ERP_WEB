@@ -4,8 +4,9 @@ function Login(){
 
     return(
         <div>
-            <Title>Login</Title>
+            
+            <Title>FAÇA SEU LOGIN</Title>
         </div>
     )
 }
-export default Login;
+export default Login;  
