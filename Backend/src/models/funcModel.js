@@ -44,13 +44,19 @@ const criar = async (nome,senha) => {
 //Função para alterar funcionário pelo id
 const alterar = async (nome,senha,id) => {
     const pool = await conexao; 
-    const consulta = await pool.request().query(`UPDATE funcionarios
+    const consulta = await pool.request().query(`select * from funcionarios where id_func = ${id}`)
+    if(consulta.recordset.length == 0){
+        return {message:"O funcionário não esta cadastrado"}
+    }else{
+        const consulta2 = await pool.request().query(`UPDATE funcionarios
                                                 SET nome_func = '${nome}'
                                                     ,senha_func = '${senha}'
                                                     ,dt_alteracao = CURRENT_TIMESTAMP
                                                 WHERE id_func = ${id}`);
-    const consulta2 = await pool.request().query(`select id_func,nome_func,senha_func,dt_alteracao from funcionarios where id_func = ${id}`)
-    return consulta2.recordset
+        const consulta3 = await pool.request().query(`select * from funcionarios where id_func = ${id}`)
+        return consulta3.recordset
+    }
+    
 }
 
 

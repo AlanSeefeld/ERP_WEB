@@ -4,7 +4,7 @@ const func = require('../models/funcModel')
 const pegarTodos = async (req,res) => {
     const funcionario = await func.pegarTodos();
     if(funcionario.length == 0){
-        return res.status(404).json({message:"Nenhum funcionário foi cadastrado"})
+        return res.status(401).json({message:"Nenhum funcionário foi cadastrado"})
     }else{
         return res.status(200).json(funcionario)
     }
@@ -36,10 +36,10 @@ const criar = async (req,res) => {
 //Função para alterar funcionário pelo id
 const alterar = async (req,res) => {
     const {nome,senha} = req.body;
-    console.log(nome)
+   
     const id = req.params.id;
     if (nome == undefined || senha == undefined){
-        return res.status(404).json({message:"nome ou senha vazios"})
+        return res.status(401).json({message:"nome ou senha vazios"})
     }else{
         const funcionario = await func.alterar(nome,senha,id);
         return res.status(200).json(funcionario)
