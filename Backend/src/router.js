@@ -7,5 +7,8 @@ const router = express.Router()
 
 router.get('/funcionarios', func.pegarTodos)
 router.get('/funcionario/:nome', func.pegarPorNome)
+router.delete('/funcionario/:id', func.deletar)
+router.post('/funcionario', func.criar)
+router.put('/funcionario/:id', func.alterar)
 
 module.exports = router;
