@@ -18,9 +18,14 @@ const pegarPorNome = async (req,res) => {
 }
 //Função para deletar Cliente pelo id
 const deletar = async (req,res) => {
-    const id = req.params.id;
-    const cliente = await cli.deletar(id)
-    return res.json({message: cliente})
+    try{
+        const id = req.params.id;
+        const cliente = await cli.deletar(id)
+        return res.json({message: cliente})
+    }catch(e){
+        return res.status(400).json({message:`Erro ao deletar cliente ${e}`})
+    }
+    
 }
 //Função para criar Cliente
 const criar = async (req,res) => {

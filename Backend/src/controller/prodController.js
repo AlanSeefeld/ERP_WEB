@@ -18,9 +18,14 @@ const pegarPorNome = async (req,res) => {
 }
 //Função para deletar Produto pelo id
 const deletar = async (req,res) => {
-    const id = req.params.id;
-    const produto = await cli.deletar(id)
-    return res.json({message: produto})
+    try{
+        const id = req.params.id;
+        const produto = await cli.deletar(id)
+        return res.json({message: produto})
+    }catch(e){
+        return res.status(400).json({message:`Erro ao deletar Produto ${e}`})
+    }
+    
 }
 //Função para criar Produto
 const criar = async (req,res) => {

@@ -18,9 +18,14 @@ const pegarPorNome = async (req,res) => {
 }
 //Função para deletar funcionário pelo id
 const deletar = async (req,res) => {
-    const id = req.params.id;
-    const funcionario = await func.deletar(id)
-    return res.json({message: funcionario})
+    try{
+        const id = req.params.id;
+        const funcionario = await func.deletar(id)
+        return res.json({message: funcionario})
+    }catch(e){
+        return res.status(400).json({message:`Erro ao deletar Funcionário ${e}`})
+    }
+    
 }
 //Função para criar funcionário
 const criar = async (req,res) => {
