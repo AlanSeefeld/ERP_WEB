@@ -46,7 +46,7 @@ const deletar = async (id) => {
     if(venda.recordset.length == 0){
         return "A Venda não foi lançada"
     }else{
-        const consulta2 = await pool.request().query(`delete from vendas where id_venda = ${id}`);
+        const consulta2 = await pool.request().query(`delete from vendas where id_venda = ${id} delete from receber where id_venda = ${id}`);
         return "Venda deletada com sucesso"
     }
     

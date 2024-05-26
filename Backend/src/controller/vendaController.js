@@ -20,8 +20,8 @@ const pegarPorId = async (req,res) => {
 const deletar = async (req,res) => {
    
         const id = req.params.id;
-        const venda = await venda.deletar(id)
-        return res.json({message: venda})
+        const vendas = await venda.deletar(id)
+        return res.json({message: vendas})
     
     
     
