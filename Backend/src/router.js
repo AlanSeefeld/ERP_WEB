@@ -4,6 +4,8 @@ const express = require('express')
 const func = require('./controller/funcController')
 //Importa as funções do Cliente 
 const cli = require('./controller/cliController')
+//Importa as funções do Produto 
+const prod = require('./controller/prodController')
 //Cria um novo roteador do
 const router = express.Router()
 //Rotas do funcionário
@@ -19,5 +21,12 @@ router.get('/cliente/:nome', cli.pegarPorNome)
 router.delete('/cliente/:id', cli.deletar)
 router.post('/cliente', cli.criar)
 router.put('/cliente/:id', cli.alterar)
+
+//Rotas do Produto
+router.get('/produtos', prod.pegarTodos)
+router.get('/produto/:nome', prod.pegarPorNome)
+router.delete('/produto/:id', prod.deletar)
+router.post('/produto', prod.criar)
+router.put('/produto/:id', prod.alterar)
 
 module.exports = router;

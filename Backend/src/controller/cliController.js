@@ -31,7 +31,7 @@ const criar = async (req,res) => {
     
     
 }
-//Função para alterar funcionário pelo id
+//Função para alterar Cliente pelo id
 const alterar = async (req,res) => {
     const {tipo,nome,doc,tel} = req.body;
     
