@@ -54,7 +54,7 @@ const deletar = async (id) => {
 //Função para retornar maior numero de venda
 const numeroVenda = async ()=>{
     const pool = await conexao; 
-    const consulta = await pool.request().query(`SELECT COALESCE(MAX(id_venda)+1, 0) as id FROM vendas`)
+    const consulta = await pool.request().query(`SELECT COALESCE(MAX(id_venda)+1, 1) as id FROM vendas`)
     return consulta.recordset
 }
 //Função para lançar venda
