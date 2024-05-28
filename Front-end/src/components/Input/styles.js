@@ -10,5 +10,5 @@ export const InputInfo = styled.input`
     background-color: transparent;
     color: black;
     font-size: 20px;
-    position: fixed;
+    z-index: 9999;
 `

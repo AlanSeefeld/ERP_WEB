@@ -1,10 +1,10 @@
 import { SectionGlobal } from "./styles"; 
 
-function Section(){
+function Section({children}){
 
     return(
         <>
-            <SectionGlobal></SectionGlobal>
+            <SectionGlobal>{children}</SectionGlobal>
         </>
     )
 }

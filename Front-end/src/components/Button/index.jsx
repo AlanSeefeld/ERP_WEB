@@ -1,10 +1,12 @@
 import { ButtonGlobal } from "./styles";
 
-function Button(){
+function Button({children}){
 
     return(
         <>
-        <ButtonGlobal></ButtonGlobal>
+        <ButtonGlobal>
+             {children}
+        </ButtonGlobal>
         </>
     )
 }

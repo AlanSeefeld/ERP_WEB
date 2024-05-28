@@ -11,6 +11,8 @@ export const ButtonGlobal = styled.button`
     border: none;
     font-size: 30px;
     transition: font-size 0.3s;
+    z-index: 9999;
+    position: absolute;
     
     &:hover{
     background:linear-gradient(to right, #ffc200,#F9DB5C);

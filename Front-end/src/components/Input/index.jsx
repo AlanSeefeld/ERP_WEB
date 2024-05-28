@@ -1,10 +1,10 @@
 import { InputInfo } from "./styles";
 
-function Input(){
+function Input({children}){
 
     return(
         <>
-            <InputInfo></InputInfo>
+            <InputInfo>{children}</InputInfo>
         </>
     )
 }
