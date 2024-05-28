@@ -10,7 +10,9 @@ const prod = require('./controller/prodController')
 const venda = require('./controller/vendaController')
 //Importa as funções do Receber 
 const receb = require('./controller/receberController')
-//Cria um novo roteador do
+//Importa as funções do Compra 
+const compra = require('./controller/compraController')
+//Cria um novo roteador do app
 const router = express.Router()
 //Rotas do funcionário
 router.get('/funcionarios', func.pegarTodos)
@@ -36,7 +38,7 @@ router.put('/produto/:id', prod.alterar)
 //Rotas da Venda
 router.get('/vendas', venda.pegarTodos)
 router.get('/venda/:id', venda.pegarPorId)
-router.get('/numero', venda.numeroVenda)
+router.get('/numeroVenda', venda.numeroVenda)
 router.delete('/venda/:id', venda.deletar)
 router.post('/venda', venda.criar)
 
@@ -45,6 +47,13 @@ router.get('/receber', receb.pegarTodos)
 router.get('/recebe/:id', receb.pegarPorId)
 router.put('/recebe/:id', receb.alterar)
 router.post('/recebe', receb.criar)
+
+//Rotas da Compra
+router.get('/compras', compra.pegarTodos)
+router.get('/compra/:id', compra.pegarPorId)
+router.get('/numeroCompra', compra.numeroCompra)
+router.delete('/compra/:id', compra.deletar)
+router.post('/compra', compra.criar)
 
 
 module.exports = router;

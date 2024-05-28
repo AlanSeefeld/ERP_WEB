@@ -47,35 +47,29 @@ const numeroCompra = async ()=>{
     const consulta = await pool.request().query(`SELECT COALESCE(MAX(id_compra)+1, 0) as id FROM compras`)
     return consulta.recordset
 }
-//Função para lançar Compra //parei aquiiiiiiiiii
-const criar = async (id,cliente,func,prod,preco,qntd,desc,tp_venda) => {
+//Função para lançar Compra 
+const criar = async (id,fornecedor,produto,custo,qntd) => {
     const pool = await conexao; 
-    const consulta = await pool.request().query(`INSERT INTO [dbo].[vendas]
-                                                ([id_venda]
-                                                ,[id_cli]
-                                                ,[id_func]
+    const consulta = await pool.request().query(`INSERT INTO [dbo].[compras]
+                                                ([id_compra]
+                                                ,[fornecedor]
                                                 ,[id_prod]
-                                                ,[preco_prod]
+                                                ,[custo_prod]
                                                 ,[qntd_prod]
-                                                ,[desc_prod]
-                                                ,[tp_venda]
                                                 ,[total_prod]
                                                 ,[dt_lancamento])
-                                                VALUES
+                                            VALUES
                                                 (${id}
-                                                ,${cliente}
-                                                ,${func}
-                                                ,${prod}
-                                                ,${preco}
+                                                ,'${fornecedor}'
+                                                ,${produto}
+                                                ,${custo}
                                                 ,${qntd}
-                                                ,${desc}
-                                                ,'${tp_venda}'
-                                                ,${(qntd * preco)-desc}
+                                                ,${qntd * custo}
                                                 ,CURRENT_TIMESTAMP)`);
     return consulta
 }
 
 
 module.exports = {
-    pegarTodos,numeroVenda,deletar,criar,pegarPorId
+    pegarTodos,numeroCompra,deletar,criar,pegarPorId
 }
