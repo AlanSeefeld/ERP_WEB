@@ -12,6 +12,8 @@ const venda = require('./controller/vendaController')
 const receb = require('./controller/receberController')
 //Importa as funções do Compra 
 const compra = require('./controller/compraController')
+//Importa as funções do Agenda 
+const agenda = require('./controller/agendaController')
 //Cria um novo roteador do app
 const router = express.Router()
 //Rotas do funcionário
@@ -54,6 +56,13 @@ router.get('/compra/:id', compra.pegarPorId)
 router.get('/numeroCompra', compra.numeroCompra)
 router.delete('/compra/:id', compra.deletar)
 router.post('/compra', compra.criar)
+
+//Rotas da Agenda
+router.get('/agendas', agenda.pegarTodos)
+router.get('/agenda', agenda.pegarPordata)
+router.get('/numeroAgenda', agenda.numeroAgenda)
+router.delete('/agenda/:id', agenda.deletar)
+router.post('/agenda', agenda.criar)
 
 
 module.exports = router;
