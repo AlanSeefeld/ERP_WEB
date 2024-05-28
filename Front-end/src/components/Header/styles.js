@@ -10,10 +10,15 @@ export const Menu = styled.header`
 `
 export const DivMenu = styled.button`
     width: 100%;
-    height: 9.5%;
+    height: 10%;
     border: none;
     cursor: pointer;
     background-color: transparent;
+
+    img {
+        width: 50px; 
+        height: 50px; 
+    }
 `
 export const NameMenu = styled.h3`
     color: black;
