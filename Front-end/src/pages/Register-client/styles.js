@@ -61,7 +61,7 @@ export const DivRadio = styled.div`
   -webkit-box-shadow: 10px 10px 21px -8px rgba(0, 0, 0, 0.61);
   -moz-box-shadow: 10px 10px 21px -8px rgba(0, 0, 0, 0.61);
   box-shadow: 10px 10px 21px -8px rgba(0, 0, 0, 0.61);
-  background-color: #F9DB5C;
+  background-color: #ffc200;
 
 `;
 
@@ -73,7 +73,7 @@ export const InputRadio = styled.input`
   display: none;
 
   &:checked + span {
-    background-color: #ffc200;
+    background-color: #F9DB5C;
     font-weight: 600;
   }
 
