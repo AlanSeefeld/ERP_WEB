@@ -3,8 +3,12 @@ import styled from "styled-components";
 export const DivSection = styled.div`
   display: flex;
   justify-content: space-evenly;
-  padding-left: 50px;
   align-items: center;
+  flex: 1;
+`;
+export const DivPai = styled.div`
+  display: flex;
+ 
 `;
 
 export const DivInput = styled.div`

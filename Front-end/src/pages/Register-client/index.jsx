@@ -4,11 +4,11 @@ import Button from "../../components/Button"
 import Section from "../../components/Section"
 import TitleInput from "../../components/TitleInput";
 import Search from "../../components/Search";
-import { DivSection, DivInput, DivButton, DivSearch, DivSearchImg, DivRadio, LabelRadio, InputRadio, SpanRadio} from "./styles";
+import { DivSection, DivInput, DivButton, DivSearch, DivSearchImg, DivRadio, LabelRadio, InputRadio, SpanRadio, DivPai} from "./styles";
 
 function RegisterClient() {
    return (
-      <>
+      <DivPai>
          <Header />
          <DivSection>
             <Section>
@@ -58,7 +58,7 @@ function RegisterClient() {
             </Section>
          </DivSection>
 
-      </>
+      </DivPai>
    )
 }
 export default RegisterClient;
