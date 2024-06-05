@@ -5,7 +5,6 @@ export const SectionGlobal = styled.section`
     width: 35%;
     height: 70%;
     border-radius: 20px;
-    margin-left: 75px;
     justify-content: space-between;
     flex-direction: column;
     display: flex;
