@@ -1,4 +1,4 @@
-import { Div } from "./styles";
+import { Div,Img } from "./styles";
 import Header from "../../components/Header";
 
 function Home(){
@@ -6,7 +6,10 @@ function Home(){
     return(
         <Div>
             <Header></Header>
-            <img src="" alt="Logo-Royf" />
+            <Img>
+                <img src="./src/assets/logo.png" alt="" />
+            </Img>
+           
         </Div>
     )
 }
