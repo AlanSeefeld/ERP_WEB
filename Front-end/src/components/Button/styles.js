@@ -9,7 +9,7 @@ export const ButtonGlobal = styled.button`
   border-radius: 15px;
   cursor: pointer;
   border: none;
-  font-size: 30px;
+  font-size: 25px;
   transition: font-size 0.3s;
   z-index: 9999;
   position: absolute;
@@ -19,6 +19,6 @@ export const ButtonGlobal = styled.button`
 
   &:hover {
     background: linear-gradient(to right, #ffc200, #f9db5c);
-    font-size: 35px;
+    font-size: 30px;
   }
 `;

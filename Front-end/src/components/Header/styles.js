@@ -4,7 +4,6 @@ export const Menu = styled.header`
     background:linear-gradient(to bottom, #ffc200,#F9DB5C);
     width: 14vh;
     height: 100%;
-    position: fixed;
     top:0;
     left:0;
 `

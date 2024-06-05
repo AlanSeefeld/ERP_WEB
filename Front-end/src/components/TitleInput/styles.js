@@ -7,7 +7,7 @@ export const DivTitle = styled.div`
     padding-left: 30px;
     text-align: start;
 
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
 
