@@ -4,11 +4,11 @@ import Button from "../../components/Button"
 import Section from "../../components/Section"
 import TitleInput from "../../components/TitleInput";
 import Search from "../../components/Search";
-import { DivSection, DivInput, DivButton, DivSearch, DivSearchImg, DivRadio, LabelRadio, InputRadio, SpanRadio, DivSectionInput } from "./styles";
+import { DivSection, DivInput, DivButton, DivSearch, DivSearchImg, DivRadio, LabelRadio, InputRadio, SpanRadio, DivSectionInput, DivPai} from "./styles";
 
 function RegisterProduct() {
     return (
-        <>
+        <DivPai>
             <Header />
             <DivSection>
                 <Section>
@@ -25,7 +25,7 @@ function RegisterProduct() {
                 </Section>
 
                 <Section>
-                <DivSectionInput>
+                 <DivSectionInput>
                     <DivInput>
                         <DivRadio class="radio-inputs">
                             <LabelRadio class="radio">
@@ -64,7 +64,7 @@ function RegisterProduct() {
                 </Section>
             </DivSection>
 
-        </>
+        </DivPai>
     )
 }
 export default RegisterProduct;
