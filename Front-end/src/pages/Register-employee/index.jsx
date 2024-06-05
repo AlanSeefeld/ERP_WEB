@@ -4,11 +4,11 @@ import Button from "../../components/Button"
 import Section from "../../components/Section"
 import TitleInput from "../../components/TitleInput";
 import Search from "../../components/Search";
-import { DivSection, DivInput, DivButton, DivSearch, DivSearchImg, DivSectionInput } from "./styles";
+import { DivSection, DivInput, DivButton, DivSearch, DivSearchImg, DivSectionInput, DivPai } from "./styles";
 
 function RegisterEmployee() {
     return (
-        <>
+        <DivPai>
             <Header />
             <DivSection>
                 <Section>
@@ -44,7 +44,7 @@ function RegisterEmployee() {
                 </Section>
             </DivSection>
 
-        </>
+        </DivPai>
     )
 }
 export default RegisterEmployee;
