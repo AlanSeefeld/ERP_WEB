@@ -3,13 +3,13 @@ import styled from 'styled-components'
 //Fazendo criação e estilização do componente Title 
 export const Title = styled.h1`
     color:white;
-    padding-top: 80px;
+    padding-top: 35px;
     font-weight:bold;
     margin-left: 30px;
 `
 export const DivMain = styled.div`
     height: 60vh;
-    width: 50vh;
+    width: 55vh;
     
 `
 export const MainLogin = styled.main`
@@ -35,7 +35,7 @@ export const Div = styled.div`
 
 `
 export const DivTitle = styled.div`
-    width: 50vh;
+    width: 100%;
     height: 50px;
     text-align: center;
     align-items: center;
@@ -43,7 +43,7 @@ export const DivTitle = styled.div`
 export const Divlogin = styled.div`
     width: 60vh;
     height: 35px;
-    margin-top: 85px;
+    margin-top: 45px;
     padding-top: 10px;
 
 `
