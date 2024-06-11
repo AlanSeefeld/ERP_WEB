@@ -27,6 +27,7 @@ export const DivClient = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;
 export const SectionInfos = styled.div`
   border: none;
@@ -168,6 +169,7 @@ export const DivCancelarVenda = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  padding-right:15vh
 `;
 
 export const DivSectionResul = styled.div`
