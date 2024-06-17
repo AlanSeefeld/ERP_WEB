@@ -2,8 +2,9 @@ import { DivTitleInfos, DivTitleInfosPai, DivViewInfos, InputValores, ButtonEnce
 import Header from "../../components/Header";
 import Input from "../../components/Input";
 import Button from "../../components/Button"
-import Section from "../../components/Section"
 import TitleInput from "../../components/TitleInput"
+import SelectsGlobal from "../../components/Select";
+import OptionGlobal from "../../components/Options";
 
 function PageCompra() {
 
@@ -22,7 +23,12 @@ function PageCompra() {
                     <SectionInfos>
                         <DivSectionInfos>
                             <TitleInput>Produto</TitleInput>
-                            <Input />
+                            <SelectsGlobal>
+                                <OptionGlobal>Produto 2</OptionGlobal>
+                                <OptionGlobal>Produto 1</OptionGlobal>
+                                <OptionGlobal>Produto 3</OptionGlobal>
+                                <OptionGlobal>Produto 4</OptionGlobal>
+                            </SelectsGlobal>
                         </DivSectionInfos>
                         <DivSectionInfosVQD>
                             <DivInfos>

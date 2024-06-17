@@ -2,8 +2,9 @@ import { DivTitleInfos, DivTitleInfosPai, DivViewInfos, InputValores, ButtonEnce
 import Header from "../../components/Header";
 import Input from "../../components/Input";
 import Button from "../../components/Button"
-import Section from "../../components/Section"
 import TitleInput from "../../components/TitleInput"
+import SelectsGlobal from "../../components/Select";
+import OptionGlobal from "../../components/Options";
 
 function PageSales() {
 
@@ -16,17 +17,32 @@ function PageSales() {
                 <DivMain>
                     <DivClient>
                         <TitleInput>Cliente</TitleInput>
-                        <Input />
+                        <SelectsGlobal>
+                                <OptionGlobal>Cliente 2</OptionGlobal>
+                                <OptionGlobal>Cliente 1</OptionGlobal>
+                                <OptionGlobal>Cliente 3</OptionGlobal>
+                                <OptionGlobal>Cliente 4</OptionGlobal>
+                            </SelectsGlobal>
                     </DivClient>
 
                     <SectionInfos>
                         <DivSectionInfos>
                             <TitleInput>Funcionário</TitleInput>
-                            <Input />
+                            <SelectsGlobal>
+                                <OptionGlobal>Funcionário 2</OptionGlobal>
+                                <OptionGlobal>Funcionário 1</OptionGlobal>
+                                <OptionGlobal>Funcionário 3</OptionGlobal>
+                                <OptionGlobal>Funcionário 4</OptionGlobal>
+                            </SelectsGlobal>
                         </DivSectionInfos>
                         <DivSectionInfos>
                             <TitleInput>Produto</TitleInput>
-                            <Input />
+                            <SelectsGlobal>
+                                <OptionGlobal>Produto 2</OptionGlobal>
+                                <OptionGlobal>Produto 1</OptionGlobal>
+                                <OptionGlobal>Produto 3</OptionGlobal>
+                                <OptionGlobal>Produto 4</OptionGlobal>
+                            </SelectsGlobal>
                         </DivSectionInfos>
                         <DivSectionInfosVQD>
                             <DivInfos>
