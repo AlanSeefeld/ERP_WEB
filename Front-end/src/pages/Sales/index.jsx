@@ -1,6 +1,5 @@
 import { DivTitleInfos, DivTitleInfosPai, DivViewInfos, InputValores, ButtonEncerrar, DivSectionResul, DivCancelarVenda, SectionResult, InputInfos, DivSectionInfosVQD, DivInfos, DivSectionInfos, ButtonExcluir, DivMain, DivResult, Div, DivClient, SectionInfos, DivDelete, DivPai, DivExcluirVenda, InputExcluir } from "./style";
 import Header from "../../components/Header";
-import Input from "../../components/Input";
 import Button from "../../components/Button"
 import TitleInput from "../../components/TitleInput"
 import SelectsGlobal from "../../components/Select";

@@ -6,6 +6,9 @@ import RegisterEmployee from './pages/Register-employee'
 import RegisterProduct from './pages/Register-product'
 import PageSales from './pages/Sales'
 import Receber from './pages/Schedule'
+import PageCompra from './pages/Purchase/indedx'
+import Agenda from './pages/Schedule'
+import Relatorios from './pages/Reports'
 
 import React from 'react'
 import ReactDOM from 'react-dom/client'
@@ -14,6 +17,6 @@ import MyGlobalStyles from './styles/globalStyles'
 ReactDOM.createRoot(document.getElementById('root')).render(
     <>
     <MyGlobalStyles/>
-      <Receber/>
+      <Relatorios/>
       </>
 )
