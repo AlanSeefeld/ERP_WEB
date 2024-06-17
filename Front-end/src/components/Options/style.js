@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const OptionGlobal = styled.option`
+export const OptionsGlobal = styled.option`
   border-radius: 15px;
   font-weight: bold;
   background-color: white;

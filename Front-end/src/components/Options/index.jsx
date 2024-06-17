@@ -1,12 +1,12 @@
-import { OptionGlobal } from "./styles";
+import { OptionsGlobal } from "./style";
 
 function OptionGlobal({children}){
 
     return(
         <>
-        <OptionGlobal>
+        <OptionsGlobal>
              {children}
-        </OptionGlobal>
+        </OptionsGlobal>
         </>
     )
 }

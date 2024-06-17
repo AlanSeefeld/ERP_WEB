@@ -1,13 +1,13 @@
-import { SeleectGobal } from "./styles";
+import { SelectGlobal } from "./style";
 
-function SeleectGobal({children}){
+function SelectsGlobal({children}){
 
     return(
         <>
-        <SeleectGobal>
+        <SelectGlobal>
              {children}
-        </SeleectGobal>
+        </SelectGlobal>
         </>
     )
 }
-export default SeleectGobal;  
+export default SelectsGlobal;  
