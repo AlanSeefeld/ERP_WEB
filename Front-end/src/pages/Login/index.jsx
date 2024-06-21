@@ -1,4 +1,5 @@
 import {Title, MainLogin, Div, DivTitle, Divlogin, Img, DivMain, Input, Subtitle, Button} from './styles'
+import React from 'react';
 
 function Login(){
 

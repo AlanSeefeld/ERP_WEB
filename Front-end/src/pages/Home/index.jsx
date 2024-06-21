@@ -1,5 +1,6 @@
 import { Div,Img } from "./styles";
 import Header from "../../components/Header";
+import React from 'react';
 
 function Home(){
 

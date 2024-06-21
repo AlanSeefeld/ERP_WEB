@@ -1,4 +1,4 @@
-import { InputDateTime, DivTitleInfos2, DivAddServicos, DivInfos, DivServicos, DivInfosTitle, DivDate, InputDate, DivTitleInfos, DivTitleInfosPai, DivCriarNovaAgenda, SectionResult, DivMain, DivResult, Div, SectionInfos, DivPai } from "./style";
+import {InputDateTime, DivTitleInfos2, DivAddServicos, DivInfos, DivServicos, DivInfosTitle, DivDate, InputDate, DivTitleInfos, DivTitleInfosPai, DivCriarNovaAgenda, SectionResult, DivMain, DivResult, Div, SectionInfos, DivPai } from "./style";
 import Header from "../../components/Header";
 import Button from "../../components/Button"
 import TitleInput from "../../components/TitleInput"
