@@ -1,5 +1,6 @@
 import {Title, MainLogin, Div, DivTitle, Divlogin, Img, DivMain, Input, Subtitle, Button} from './styles'
 import React from 'react';
+import {useState} from 'react'
 
 function Login(){
 
@@ -14,12 +15,14 @@ function Login(){
                     
                         <Divlogin>
                             <Subtitle>Usuário</Subtitle>
-                            <Input></Input>
+                            <Input 
+                            placeholder='Digite seu usuário...'></Input>
                          </Divlogin>
 
                          <Divlogin>
                             <Subtitle>Senha</Subtitle>
-                            <Input></Input>
+                            <Input type="password"
+                            placeholder='Digite sua senha...'></Input>
                          </Divlogin>
                             <Button>Entrar</Button>
                  </DivMain>
