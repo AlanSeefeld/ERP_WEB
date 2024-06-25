@@ -16,6 +16,15 @@ const pegarPorNome = async (req,res) => {
     const funcionario = await func.pegarPorNome(nome)
     return res.status(200).json(funcionario)
 }
+
+//Função para pegar o funcionário para fazer login
+const pegarParaLogar = async (req,res) => {
+    const nome = req.params.nome;
+    const senha = req.params.senha;
+    const funcionario = await func.pegarParaLogar(nome,senha)
+    return res.status(200).json(funcionario)
+}
+
 //Função para deletar funcionário pelo id
 const deletar = async (req,res) => {
     try{
@@ -53,4 +62,4 @@ const alterar = async (req,res) => {
 
 
 module.exports = {
-    pegarTodos,pegarPorNome,deletar,criar,alterar}
+    pegarTodos,pegarPorNome,deletar,criar,alterar,pegarParaLogar}

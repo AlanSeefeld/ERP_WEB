@@ -5,8 +5,32 @@ import Section from "../../components/Section"
 import TitleInput from "../../components/TitleInput";
 import Search from "../../components/Search";
 import { DivSection, DivInput, DivButton, DivSearch, DivSearchImg, DivRadio, LabelRadio, InputRadio, SpanRadio, DivPai} from "./styles";
+import {back} from '../../config/config';
+import { useState } from "react";
 
 function RegisterClient() {
+   const [tipo,setTipo] = useState('')
+   const [nome,setNome] = useState('')
+   const [doc,setDoc] = useState('')
+   const [tel,setTel] = useState('')
+
+   
+   const opcaoSelecionada = async (event) => {
+      await setTipo(event.target.value);
+     
+  };
+  function teste(){
+   console.log(tipo)
+  }
+
+   const registerC = async () =>{
+      const response = back.post(`cliente`,{
+         tipo,
+         nome,
+         doc,
+         tel
+      })
+   }
    return (
       <DivPai>
          <Header />
@@ -29,31 +53,35 @@ function RegisterClient() {
                <DivInput>
                   <DivRadio class="radio-inputs">
                      <LabelRadio class="radio">
-                        <InputRadio type="radio" name="radioGroup"/>
-                           <SpanRadio class="name">Físico</SpanRadio>
+                        <InputRadio type="radio" name="radioGroup" value="Físico"
+                            checked={tipo === 'Físico'}
+                            onChange={opcaoSelecionada}/>
+                           <SpanRadio class="name" >Físico</SpanRadio>
                      </LabelRadio>
                      <LabelRadio class="radio">
-                        <InputRadio type="radio" name="radioGroup"/>
-                           <SpanRadio class="name">Jurídico</SpanRadio>
+                        <InputRadio type="radio" name="radioGroup"  value="Jurídico"
+                            checked={tipo === 'Jurídico'}
+                            onChange={opcaoSelecionada}/>
+                           <SpanRadio class="name" >Jurídico</SpanRadio>
                      </LabelRadio>
 
                   </DivRadio>
                </DivInput>
                <DivInput>
                   <TitleInput>Nome </TitleInput>
-                  <Input></Input>
+                  <Input value={nome} onchane={e => setNome(e.target.value)}></Input>
                </DivInput>
                <DivInput>
                   <TitleInput>Documento </TitleInput>
-                  <Input></Input>
+                  <Input value={doc} onchane={e => setDoc(e.target.value)}></Input>
                </DivInput>
                <DivInput>
                   <TitleInput>Telefone </TitleInput>
-                  <Input></Input>
+                  <Input value={tel} onchane={e => setTel(e.target.value)}></Input>
                </DivInput>
 
                <DivButton>
-                  <Button>Salvar</Button>
+                  <Button onclick={teste}>Salvar</Button>
                </DivButton>
             </Section>
          </DivSection>

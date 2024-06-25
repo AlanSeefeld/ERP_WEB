@@ -14,6 +14,14 @@ const pegarPorNome = async (nome) => {
    
     
 }
+//Função para pegar um funcionário para fazer login
+const pegarParaLogar = async (nome,senha) => {
+    const pool = await conexao; 
+    const consulta = await pool.request().query(`select * from funcionarios where nome_func = '${nome}' and senha_func = '${senha}'`);
+    return consulta.recordset; 
+    
+}
+
 //Função para deletar funcionário pelo id
 const deletar = async (id) => {
     const pool = await conexao; 
@@ -61,5 +69,5 @@ const alterar = async (nome,senha,id) => {
 
 
 module.exports = {
-    pegarTodos,pegarPorNome,deletar,criar,alterar
+    pegarTodos,pegarPorNome,deletar,criar,alterar,pegarParaLogar
 }

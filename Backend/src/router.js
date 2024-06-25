@@ -22,6 +22,7 @@ const relVendas3 = require('./controller/reports/comprasDataController')
 const router = express.Router()
 //Rotas do funcionário
 router.get('/funcionarios', func.pegarTodos)
+router.get('/funcionarioL/:nome/:senha', func.pegarParaLogar)
 router.get('/funcionario/:nome', func.pegarPorNome)
 router.delete('/funcionario/:id', func.deletar)
 router.post('/funcionario', func.criar)
