@@ -6,7 +6,7 @@ function Header() {
     return (
         <Menu>
             <DivMenu>
-                <Link to="/Home">
+                <Link to="/">
                     <img src="/src/assets/casa.png" alt="Home" />
                 </Link>
                 <NameMenu>Home</NameMenu>
