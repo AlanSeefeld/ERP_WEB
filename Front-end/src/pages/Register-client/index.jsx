@@ -19,7 +19,7 @@ function RegisterClient() {
    useEffect(() => {
       const fetchClientes = async () => {
          try {
-            const response = await back.get(`cliente/a`);
+            const response = await back.get(`cliente`);
             setClientes(response.data);
          } catch (error) {
             console.error('Erro ao carregar clientes:', error);
@@ -27,7 +27,7 @@ function RegisterClient() {
       };
 
       fetchClientes();
-   }, []);
+   }, [clientes]);
   
 
    const opcaoSelecionada = async (event) => {
@@ -64,10 +64,7 @@ function RegisterClient() {
             setClientes([{ nome_cli: 'Nenhum Cliente' }]);
          }
       } catch (error) {
-         const response = await back.get(`cliente/a`);
-            setClientes(response.data);
-         //setClientes([{ nome_cli: 'Nenhum Cliente Encontrado' }]);
-         //console.log('Nenhum Cliente')
+         setClientes([{ nome_cli: 'Nenhum Cliente' }]);
       }
    };
 
@@ -77,7 +74,7 @@ function RegisterClient() {
          <DivSection>
             <Section>
                <DivSearch>
-                  <Search type="text" placeholder="Pesquisar Cliente..." value={pesquisa} onChange={pesquisaC}>Pesquisa de produto</Search>
+                  <Search type="text" placeholder="Pesquisar Cliente..." value={pesquisa} onChange={pesquisaC}></Search>
                   <DivSearchImg>
                      <img src="/src/assets/lupa.png" alt="Pesquisar" />
                   </DivSearchImg>

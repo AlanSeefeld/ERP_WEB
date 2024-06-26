@@ -21,7 +21,7 @@ const relVendas3 = require('./controller/reports/comprasDataController')
 //Cria um novo roteador do app
 const router = express.Router()
 //Rotas do funcionário
-router.get('/funcionarios', func.pegarTodos)
+router.get('/funcionario', func.pegarTodos)
 router.get('/funcionarioL/:nome/:senha', func.pegarParaLogar)
 router.get('/funcionario/:nome', func.pegarPorNome)
 router.delete('/funcionario/:id', func.deletar)
@@ -29,14 +29,14 @@ router.post('/funcionario', func.criar)
 router.put('/funcionario/:id', func.alterar)
 
 //Rotas do Cliente
-router.get('/clientes', cli.pegarTodos)
+router.get('/cliente', cli.pegarTodos)
 router.get('/cliente/:nome', cli.pegarPorNome)
 router.delete('/cliente/:id', cli.deletar)
 router.post('/cliente', cli.criar)
 router.put('/cliente/:id', cli.alterar)
 
 //Rotas do Produto
-router.get('/produtos', prod.pegarTodos)
+router.get('/produto', prod.pegarTodos)
 router.get('/produto/:nome', prod.pegarPorNome)
 router.delete('/produto/:id', prod.deletar)
 router.post('/produto', prod.criar)

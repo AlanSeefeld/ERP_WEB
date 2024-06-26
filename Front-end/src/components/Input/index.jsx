@@ -1,8 +1,8 @@
 import { InputInfo } from "./styles";
 
-function Input({ value, onChange, placeholder }) {
+function Input({ value, onChange, placeholder,type }) {
     return (
-        <InputInfo value={value} onChange={onChange} placeholder={placeholder} />
+        <InputInfo type={type} value={value} onChange={onChange} placeholder={placeholder} />
     );
 }
 

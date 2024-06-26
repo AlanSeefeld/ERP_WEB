@@ -39,7 +39,7 @@ const deletar = async (req,res) => {
 //Função para criar funcionário
 const criar = async (req,res) => {
     const {nome,senha} = req.body;
-    if ((nome == undefined || nome == '') || (senha == undefined || senha == '')){
+    if (nome == '' || nome == '' ){
         return res.status(404).json({message:"nome ou senha vazios"})
     }else{
         const funcionario = await func.criar(nome,senha);

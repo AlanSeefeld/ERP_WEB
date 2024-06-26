@@ -3,13 +3,13 @@ const conexao = require('../db')
 //Função para pegar todos os Clientes
 const pegarTodos = async () => { 
     const pool = await conexao; 
-    const consulta = await pool.request().query("select * from clientes"); 
+    const consulta = await pool.request().query("select top 10 * from clientes"); 
     return consulta.recordset; 
 };
 //Função para pegar os 10 primeiros onde o nome começe com...
 const pegarPorNome = async (nome) => {
     const pool = await conexao; 
-    const consulta = await pool.request().query(`select top 10 * from clientes where nome_cli like '${nome}%'`);
+    const consulta = await pool.request().query(`select top 10 * from clientes where nome_cli like '%${nome}%'`);
     return consulta.recordset; 
    
     

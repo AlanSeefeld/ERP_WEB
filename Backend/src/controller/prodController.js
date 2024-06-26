@@ -30,11 +30,16 @@ const deletar = async (req,res) => {
 //Função para criar Produto
 const criar = async (req,res) => {
     const {tipo,nome,custo,preco,com,est} = req.body;
-    
-       
-   
-    const produto = await cli.criar(tipo,nome,custo,preco,com,est);
-    return res.status(200).json({message:"Produto cadastrado com sucesso"})
+    try{
+        if (tipo == '' || nome == '' || custo == '' || preco == '' || com == ''){
+            return res.status(404).json({message:"Campos vazios"})
+        }else{
+            const produto = await cli.criar(tipo,nome,custo,preco,com,est);
+            return res.status(200).json({message:"Produto cadastrado com sucesso"})
+        }
+    }catch(e){
+        return res.status(404).json({message:`Erro ao Cadastrar Produto ${e}`})
+    }
     
     
 }
