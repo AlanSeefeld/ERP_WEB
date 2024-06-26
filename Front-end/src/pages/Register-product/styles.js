@@ -22,12 +22,10 @@ export const DivInput = styled.div`
 
 export const DivButton = styled.div`
   width: 100%;
-  height: 150px;
-  flex-direction: column;
+  height: 100px;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
-  padding-bottom: 10px;
+  justify-content: space-around;
 `;
 export const DivSearch = styled.div`
   width: 100%;
@@ -99,4 +97,58 @@ export const DivSectionInput = styled.div`
   justify-content: center;
   display: flex;
   flex-direction: column;
+`;
+export const DivName = styled.div`
+  width: 70%;
+  height: 80%;
+
+`
+export const DivButtonEdit = styled.div`
+  width: 15%;
+  height: 80%;
+`
+export const DivButtonExcluir = styled.div`
+  width: 15%;
+  height: 80%;
+`
+export const Div = styled.div`
+  width: 100%;
+  height: 10%;
+  display: flex;
+  padding-left: 5px;
+  align-items: center;
+  padding: 5px;
+  border-bottom: 1px solid black
+  
+`
+export const Icon = styled.img`
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s; 
+
+  &:hover {
+    transform: scale(1.4); 
+  }
+`;
+export const ButtonRegister = styled.button`
+  background: linear-gradient(to right, #f9db5c, #ffc200);
+  color: black;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  width: 45%;
+  height: 40px;
+  border-radius: 15px;
+  cursor: pointer;
+  border: none;
+  font-size: 20px;
+  transition: font-size 0.3s;
+  z-index: 9999;
+  -webkit-box-shadow: 10px 10px 21px -8px rgba(0, 0, 0, 0.61);
+  -moz-box-shadow: 10px 10px 21px -8px rgba(0, 0, 0, 0.61);
+  box-shadow: 10px 10px 21px -8px rgba(0, 0, 0, 0.61);
+
+  &:hover {
+    background: linear-gradient(to right, #ffc200, #f9db5c);
+    font-size: 25px;
+  }
 `;

@@ -1,12 +1,11 @@
 import Header from "../../components/Header";
 import Input from "../../components/Input";
-import Button from "../../components/Button";
 import Section from "../../components/Section";
 import TitleInput from "../../components/TitleInput";
 import Search from "../../components/Search";
-import { DivSection, DivInput, DivButton, DivSearch, DivSearchImg, DivRadio, LabelRadio, InputRadio, SpanRadio, DivPai } from "./styles";
+import {ButtonRegister, Icon, Div, DivName, DivButtonEdit, DivButtonExcluir, DivSection, DivInput, DivButton, DivSearch, DivRadio, LabelRadio, InputRadio, SpanRadio, DivPai } from "./styles";
 import { back } from '../../config/config';
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function RegisterClient() {
    const [tipo, setTipo] = useState('');
@@ -15,7 +14,7 @@ function RegisterClient() {
    const [tel, setTel] = useState('');
    const [pesquisa, setPesquisa] = useState('');
    const [clientes, setClientes] = useState([]);
-   
+
    useEffect(() => {
       const fetchClientes = async () => {
          try {
@@ -28,12 +27,13 @@ function RegisterClient() {
 
       fetchClientes();
    }, [clientes]);
-  
+
 
    const opcaoSelecionada = async (event) => {
       await setTipo(event.target.value);
    };
 
+   //Função criada para registar o cliente criado ao clicar no botão
    const registerC = async () => {
       try {
          const response = await back.post('cliente', {
@@ -52,6 +52,7 @@ function RegisterClient() {
       }
    };
 
+   //Função criada para fazer a busca pelo search dos clientes criados
    const pesquisaC = async (event) => {
       const valorPesquisa = event.target.value;
       setPesquisa(valorPesquisa);
@@ -60,7 +61,7 @@ function RegisterClient() {
          const response = await back.get(`cliente/${valorPesquisa}`);
          setClientes(response.data);
          console.log(response.data)
-         if(response.data.length <= 0){
+         if (response.data.length <= 0) {
             setClientes([{ nome_cli: 'Nenhum Cliente' }]);
          }
       } catch (error) {
@@ -75,16 +76,25 @@ function RegisterClient() {
             <Section>
                <DivSearch>
                   <Search type="text" placeholder="Pesquisar Cliente..." value={pesquisa} onChange={pesquisaC}></Search>
-                  <DivSearchImg>
-                     <img src="/src/assets/lupa.png" alt="Pesquisar" />
-                  </DivSearchImg>
                </DivSearch>
-               {clientes.map((valor, index) => ( 
-                  <p key={index}>{valor.nome_cli}</p>
+
+               {clientes.map((valor, index) => (
+                  <Div key={index} className="cliente-item">
+                     <DivName>
+                        <TitleInput>{valor.nome_cli}</TitleInput>
+                     </DivName>
+                     <DivButtonEdit>
+                        <Icon
+                           src="/src/assets/editar.png"
+                        />
+                     </DivButtonEdit>
+                     <DivButtonExcluir>
+                        <Icon
+                           src="/src/assets/remover.png"
+                        />
+                     </DivButtonExcluir>
+                  </Div>
                ))}
-               <DivButton>
-                  <Button>Cadastrar Novo</Button>
-               </DivButton>
             </Section>
 
             <Section>
@@ -118,7 +128,8 @@ function RegisterClient() {
                </DivInput>
 
                <DivButton>
-                  <Button onClick={registerC}>Salvar</Button>
+                  <ButtonRegister onClick={registerC}>Cadastrar Novo</ButtonRegister>
+                  <ButtonRegister>Salvar</ButtonRegister>
                </DivButton>
             </Section>
          </DivSection>

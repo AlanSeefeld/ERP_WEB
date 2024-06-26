@@ -1,10 +1,9 @@
 import Header from "../../components/Header";
 import Input from "../../components/Input";
-import Button from "../../components/Button"
 import Section from "../../components/Section"
 import TitleInput from "../../components/TitleInput";
 import Search from "../../components/Search";
-import { DivSection, DivInput, DivButton, DivSearch, DivSearchImg, DivSectionInput, DivPai } from "./styles";
+import {ButtonRegister, Icon, Div, DivName, DivButtonEdit, DivButtonExcluir,  DivSection, DivInput, DivButton, DivSearch, DivSectionInput, DivPai } from "./styles";
 import {useState,useEffect} from 'react'
 import {back} from '../../config/config';
 
@@ -65,16 +64,25 @@ function RegisterEmployee() {
                 <Section>
                     <DivSearch>
                         <Search type="text" placeholder="Pesquisar Funcionário..." value={pesquisa} onChange={pesquisaF}></Search>
-                        <DivSearchImg>
-                            <img src="/src/assets/lupa.png" />
-                        </DivSearchImg>
                     </DivSearch>
-                    {funcionarios.map((valor, index) => ( 
-                        <p key={index}>{valor.nome_func}</p>
-                     ))}
-                    <DivButton>
-                        <Button>Cadastrar Novo</Button>
-                    </DivButton>
+                    {funcionarios.map((valor, index) => (
+                  <Div key={index} className="funcinario-item">
+                     <DivName>
+                        <TitleInput>{valor.func}</TitleInput>
+                     </DivName>
+                     <DivButtonEdit>
+                        <Icon
+                           src="/src/assets/editar.png"
+                        />
+                     </DivButtonEdit>
+                     <DivButtonExcluir>
+                        <Icon
+                           src="/src/assets/remover.png"
+                        />
+                     </DivButtonExcluir>
+                  </Div>
+               ))}
+       
                 </Section>
 
                 <Section>
@@ -92,7 +100,8 @@ function RegisterEmployee() {
 
 
                     <DivButton>
-                        <Button onClick={registerF}>Salvar</Button>
+                        <ButtonRegister onClick={registerF}>Cadastrar Novo</ButtonRegister>
+                        <ButtonRegister>Salvar</ButtonRegister>
                     </DivButton>
                 </Section>
             </DivSection>

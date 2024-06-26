@@ -4,7 +4,7 @@ import Button from "../../components/Button"
 import Section from "../../components/Section"
 import TitleInput from "../../components/TitleInput";
 import Search from "../../components/Search";
-import { DivSection, DivInput, DivButton, DivSearch, DivSearchImg, DivRadio, LabelRadio, InputRadio, SpanRadio, DivSectionInput, DivPai} from "./styles";
+import { ButtonRegister, Icon, Div, DivName, DivButtonEdit, DivButtonExcluir,DivSection, DivInput, DivButton, DivSearch, DivSearchImg, DivRadio, LabelRadio, InputRadio, SpanRadio, DivSectionInput, DivPai} from "./styles";
 import { useEffect, useState } from "react";
 import {back} from '../../config/config';
 
@@ -80,16 +80,26 @@ function RegisterProduct() {
                 <Section>
                     <DivSearch>
                         <Search type="text" placeholder="Pesquisar Produto..." value={pesquisa} onChange={pesquisaP}></Search>
-                        <DivSearchImg>
-                            <img src="/src/assets/lupa.png" />
-                        </DivSearchImg>
+        
                     </DivSearch>
-                    {produtos.map((valor, index) => ( 
-                  <p key={index}>{valor.nome_prod}</p>
+                    {produtos.map((valor, index) => (
+                  <Div key={index} className="produto-item">
+                     <DivName>
+                        <TitleInput>{valor.nome_prod}</TitleInput>
+                     </DivName>
+                     <DivButtonEdit>
+                        <Icon
+                           src="/src/assets/editar.png"
+                        />
+                     </DivButtonEdit>
+                     <DivButtonExcluir>
+                        <Icon
+                           src="/src/assets/remover.png"
+                        />
+                     </DivButtonExcluir>
+                  </Div>
                ))}
-                    <DivButton>
-                        <Button>Cadastrar Novo</Button>
-                    </DivButton>
+            
                 </Section>
 
                 <Section>
@@ -131,7 +141,8 @@ function RegisterProduct() {
 
 
                     <DivButton>
-                        <Button  onClick={registerP}>Salvar</Button>
+                        <ButtonRegister onClick={registerP} >Cadastar Novo</ButtonRegister>
+                        <ButtonRegister>Salvar</ButtonRegister>
                     </DivButton>
                 </Section>
             </DivSection>

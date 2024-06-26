@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const SearchGlobal = styled.input`
      border:none;
-    width: 80%;
+    width: 95%;
     height: 50px;
     text-align: center;
     border-radius: 15px;
