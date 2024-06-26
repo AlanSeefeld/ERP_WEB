@@ -5,8 +5,14 @@ import Section from "../../components/Section"
 import TitleInput from "../../components/TitleInput";
 import Search from "../../components/Search";
 import { DivSection, DivInput, DivButton, DivSearch, DivSearchImg, DivSectionInput, DivPai } from "./styles";
+import {useState} from 'react'
+import {back} from '../../config/config';
 
 function RegisterEmployee() {
+    const cadastrarF = async() =>{
+        
+    }
+
     return (
         <DivPai>
             <Header />

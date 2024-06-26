@@ -30,10 +30,12 @@ const deletar = async (req,res) => {
 //Função para criar Cliente
 const criar = async (req,res) => {
     const {tipo,nome,doc,tel} = req.body;
-    
+    if (nome == '' || doc == '' || tel == '' || tipo == ''){
+        return res.status(404).json({message:"Alguns campos estão vazios"})
+    }else{
     const cliente = await cli.criar(tipo,nome,doc,tel);
     return res.status(200).json({message:"Cliente cadastrado com sucesso"})
-    
+    }
     
 }
 //Função para alterar Cliente pelo id

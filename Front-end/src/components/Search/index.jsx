@@ -1,9 +1,9 @@
 import { SearchGlobal } from "./styles";
 
-function Search({placeholder}){
+function Search({placeholder,value,onChange}){
     return(
         <>
-            <SearchGlobal placeholder={placeholder}></SearchGlobal>
+            <SearchGlobal placeholder={placeholder} value={value} onChange={onChange}></SearchGlobal>
         </>
     )
 }

@@ -1,11 +1,9 @@
 import { InputInfo } from "./styles";
 
-function Input({children}){
-
-    return(
-        <>
-            <InputInfo>{children}</InputInfo>
-        </>
-    )
+function Input({ value, onChange, placeholder }) {
+    return (
+        <InputInfo value={value} onChange={onChange} placeholder={placeholder} />
+    );
 }
-export default Input;  
+
+export default Input;
