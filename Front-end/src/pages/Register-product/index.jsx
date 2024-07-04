@@ -29,7 +29,7 @@ function RegisterProduct() {
         };
   
         fetchProdutos();
-     }, [produtos]);
+     }, []);
 
      const opcaoSelecionada = async (event) => {
         await setTipo(event.target.value);

@@ -24,7 +24,7 @@ function RegisterEmployee() {
         };
   
         fetchFuncionarios();
-     }, [funcionarios]);
+     }, []);
 
      const registerF = async () => {
         try {

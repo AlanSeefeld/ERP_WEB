@@ -8,12 +8,14 @@ import { back } from '../../config/config';
 import { useState, useEffect } from "react";
 
 function RegisterClient() {
+   const [idCliente,setId] = useState();
    const [tipo, setTipo] = useState('');
    const [nome, setNome] = useState('');
    const [doc, setDoc] = useState('');
    const [tel, setTel] = useState('');
    const [pesquisa, setPesquisa] = useState('');
    const [clientes, setClientes] = useState([]);
+   const [editando,setEditando] = useState(false)
 
    useEffect(() => {
       const fetchClientes = async () => {
@@ -26,7 +28,7 @@ function RegisterClient() {
       };
 
       fetchClientes();
-   }, [clientes]);
+   }, []);
 
 
    const opcaoSelecionada = async (event) => {
@@ -35,6 +37,7 @@ function RegisterClient() {
 
    //Função criada para registar o cliente criado ao clicar no botão
    const registerC = async () => {
+      
       try {
          const response = await back.post('cliente', {
             tipo: tipo,
@@ -42,6 +45,8 @@ function RegisterClient() {
             doc: doc,
             tel: tel
          });
+         //console.log(response.data.cliente)
+         clientes.push(response.data.cliente)
          alert("Cliente cadastrado com sucesso!");
          setTipo('');
          setNome('');
@@ -69,6 +74,58 @@ function RegisterClient() {
       }
    };
 
+   const excluirC = async (id) => {
+      try{
+         const response = await back.delete(`cliente/${id}`)
+         //console.log("deu")
+         setClientes(prevClientes => prevClientes.filter(cliente => cliente.id_cli !== id));
+         alert("Cliente excluido com sucesso!");
+      }catch(e){
+         alert("Falha ao excluir cliente");
+      }
+   }
+
+   const editarC = (id) =>{
+      setEditando(true)
+      const cli = clientes.filter(cli => cli.id_cli === id)
+      //console.log(cli[0])  
+      setId(cli[0].id_cli)
+      setTipo(cli[0].tp_cli)
+      setNome(cli[0].nome_cli)
+      setDoc(cli[0].doc_cli)
+      setTel(cli[0].tel_cli)
+   }
+
+   const cancelarEditarC = () => {
+      setEditando(false)
+      setTipo('');
+      setNome('');
+      setDoc('');
+      setTel('');
+   }
+
+   const salvarEditarC = async () => {
+      try{
+         const response = await back.put(`cliente/${idCliente}`,{
+            tipo: tipo,
+            nome: nome,
+            doc: doc,
+            tel: tel
+         })
+         const clientesAtualizado = await back.get(`cliente`);
+         setClientes(clientesAtualizado.data);
+         alert("Cliente Alterado com sucesso!");
+         setTipo('');
+         setNome('');
+         setDoc('');
+         setTel('');
+         setEditando(false)
+      }catch(e){
+         alert("erro para editar")
+      }
+      
+   } 
+
    return (
       <DivPai>
          <Header />
@@ -81,18 +138,21 @@ function RegisterClient() {
                {clientes.map((valor, index) => (
                   <Div key={index} className="cliente-item">
                      <DivName>
-                        <TitleInput>{valor.nome_cli}</TitleInput>
+                        <TitleInput id={valor.id_cli}>{valor.nome_cli}</TitleInput>
                      </DivName>
-                     <DivButtonEdit>
+                     <DivButtonEdit onClick={() => {editarC(valor.id_cli);}}>
                         <Icon
                            src="/src/assets/editar.png"
                         />
                      </DivButtonEdit>
-                     <DivButtonExcluir>
+                     {editando === false && (
+                        <DivButtonExcluir onClick={() => {excluirC(valor.id_cli);}}>
                         <Icon
                            src="/src/assets/remover.png"
                         />
-                     </DivButtonExcluir>
+                        </DivButtonExcluir>
+                     )}
+                     
                   </Div>
                ))}
             </Section>
@@ -128,8 +188,16 @@ function RegisterClient() {
                </DivInput>
 
                <DivButton>
-                  <ButtonRegister onClick={registerC}>Cadastrar Novo</ButtonRegister>
-                  <ButtonRegister>Salvar</ButtonRegister>
+                  {editando === false && (
+                     <ButtonRegister onClick={registerC}>Cadastrar Novo</ButtonRegister>
+                  )}
+                  
+                  {editando === true && (
+                            <>
+                                <ButtonRegister onClick={salvarEditarC}>Salvar</ButtonRegister>
+                                <ButtonRegister onClick={cancelarEditarC}>Cancelar</ButtonRegister>
+                            </>
+                        )}
                </DivButton>
             </Section>
          </DivSection>

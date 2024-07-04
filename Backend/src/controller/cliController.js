@@ -34,7 +34,7 @@ const criar = async (req,res) => {
         return res.status(404).json({message:"Alguns campos estão vazios"})
     }else{
     const cliente = await cli.criar(tipo,nome,doc,tel);
-    return res.status(200).json({message:"Cliente cadastrado com sucesso"})
+    return res.status(200).json({cliente})
     }
     
 }

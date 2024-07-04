@@ -27,23 +27,30 @@ const deletar = async (id) => {
     
 }
 //Função para criar Cliente
-const criar = async (tipo,nome,doc,tel) => {
+const criar = async (tipo, nome, doc, tel) => {
     const pool = await conexao; 
-    const consulta = await pool.request().query(`INSERT INTO [dbo].[clientes]
-                                                ([tp_cli]
-                                                ,[nome_cli]
-                                                ,[doc_cli]
-                                                ,[tel_cli]
-                                                ,[dt_cadastro]
-                                                ,[dt_alteracao])
-                                                VALUES
-                                                ('${tipo}'
-                                                ,'${nome}'
-                                                ,'${doc}'
-                                                ,'${tel}'
-                                                ,CURRENT_TIMESTAMP
-                                                ,CURRENT_TIMESTAMP)`);
-    return consulta
+    const consulta = await pool.request()
+        .input('tipo', tipo)
+        .input('nome', nome)
+        .input('doc', doc)
+        .input('tel', tel)
+        .query(`INSERT INTO [dbo].[clientes]
+                ([tp_cli]
+                ,[nome_cli]
+                ,[doc_cli]
+                ,[tel_cli]
+                ,[dt_cadastro]
+                ,[dt_alteracao])
+                OUTPUT INSERTED.*
+                VALUES
+                (@tipo
+                ,@nome
+                ,@doc
+                ,@tel
+                ,CURRENT_TIMESTAMP
+                ,CURRENT_TIMESTAMP)`);
+                
+    return consulta.recordset[0]; 
 }
 //Função para alterar Cliente pelo id
 const alterar = async (tipo,nome,doc,tel,id) => {
