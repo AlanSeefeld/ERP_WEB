@@ -27,28 +27,38 @@ const deletar = async (id) => {
     
 }
 //Função para criar Produto
-const criar = async (tipo,nome,custo,preco,com,est) => {
+const criar = async (tipo, nome, custo, preco, com, est) => {
     const pool = await conexao; 
-    const consulta = await pool.request().query(`INSERT INTO [dbo].[produtos]
-                                                ([tp_prod]
-                                                ,[nome_prod]
-                                                ,[custo_prod]
-                                                ,[preco_prod]
-                                                ,[comissao_prod]
-                                                ,[estoque_prod]
-                                                ,[dt_cadastro]
-                                                ,[dt_alteracao])
-                                                VALUES
-                                                ('${tipo}'
-                                                ,'${nome}'
-                                                ,${custo}
-                                                ,${preco}
-                                                ,${com}
-                                                ,${est}
-                                                ,CURRENT_TIMESTAMP
-                                                ,CURRENT_TIMESTAMP)`);
-    return consulta
+    const consulta = await pool.request()
+        .input('tipo', tipo)
+        .input('nome', nome)
+        .input('custo', custo)
+        .input('preco', preco)
+        .input('com', com)
+        .input('est', est)
+        .query(`INSERT INTO [dbo].[produtos]
+                ([tp_prod]
+                ,[nome_prod]
+                ,[custo_prod]
+                ,[preco_prod]
+                ,[comissao_prod]
+                ,[estoque_prod]
+                ,[dt_cadastro]
+                ,[dt_alteracao])
+                OUTPUT INSERTED.*
+                VALUES
+                (@tipo
+                ,@nome
+                ,@custo
+                ,@preco
+                ,@com
+                ,@est
+                ,CURRENT_TIMESTAMP
+                ,CURRENT_TIMESTAMP)`);
+                
+    return consulta.recordset[0]; 
 }
+
 //Função para alterar Produto pelo id
 const alterar = async (tipo,nome,custo,preco,com,est,id) => {
     const pool = await conexao; 

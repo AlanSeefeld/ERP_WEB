@@ -43,7 +43,7 @@ const criar = async (req,res) => {
         return res.status(404).json({message:"nome ou senha vazios"})
     }else{
         const funcionario = await func.criar(nome,senha);
-        return res.status(200).json({message:"Funcionário cadastrado com sucesso"})
+        return res.status(200).json({funcionario})
     }
     
 }

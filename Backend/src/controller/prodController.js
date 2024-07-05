@@ -35,7 +35,7 @@ const criar = async (req,res) => {
             return res.status(404).json({message:"Campos vazios"})
         }else{
             const produto = await cli.criar(tipo,nome,custo,preco,com,est);
-            return res.status(200).json({message:"Produto cadastrado com sucesso"})
+            return res.status(200).json({produto})
         }
     }catch(e){
         return res.status(404).json({message:`Erro ao Cadastrar Produto ${e}`})

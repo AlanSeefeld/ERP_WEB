@@ -8,10 +8,12 @@ import {useState,useEffect} from 'react'
 import {back} from '../../config/config';
 
 function RegisterEmployee() {
+   const [idFunci,setId] = useState();
     const [nome,setNome] = useState('')
     const [senha,setSenha] = useState('')
     const [pesquisa, setPesquisa] = useState('');
     const [funcionarios, setFunc] = useState([]);
+    const [editando,setEditando] = useState(false)
 
     useEffect(() => {
         const fetchFuncionarios = async () => {
@@ -25,13 +27,15 @@ function RegisterEmployee() {
   
         fetchFuncionarios();
      }, []);
-
+     //Função para registrar Funcionario
      const registerF = async () => {
         try {
            const response = await back.post('funcionario', {
               nome: nome,
               senha: senha
            });
+           //console.log(response.data.funcionario)
+           funcionarios.push(response.data.funcionario)
            alert("Funcionario cadastrado com sucesso!");
            setNome('');
            setSenha('');
@@ -39,7 +43,7 @@ function RegisterEmployee() {
            alert("Preencha todos os campos!");
         }
      };
-
+     //Função para pesquisar funcionário
      const pesquisaF = async (event) => {
         const valorPesquisa = event.target.value;
         setPesquisa(valorPesquisa);
@@ -55,6 +59,51 @@ function RegisterEmployee() {
            setFunc([{ nome_cli: 'Nenhum Funcionário' }]);
         }
      };
+     //Função para excluir funcionário
+     const excluirF = async (id) => {
+      try{
+         const response = await back.delete(`funcionario/${id}`)
+         //console.log("deu")
+         setFunc(prevFunc => prevFunc.filter(func => func.id_func !== id));
+         alert("Funcionário excluido com sucesso!");
+      }catch(e){
+         alert("Falha ao excluir Funcionário");
+      }
+   }
+   //Função para editar Funcionário
+   const editarF = (id) =>{
+      setEditando(true)
+      const func = funcionarios.filter(func => func.id_func === id)
+      //console.log(func[0])
+      setId(func[0].id_func)
+      setNome(func[0].nome_func)
+      setSenha(func[0].senha_func)
+      
+   }
+   //Função para cancelar edição
+   const cancelarEditarF = () => {
+      setEditando(false)
+      setNome("")
+      setSenha("")
+   }
+   //Função para salvar edição 
+   const salvarEditarF = async () => {
+      try{
+         const response = await back.put(`funcionario/${idFunci}`,{
+            nome: nome,
+            senha: senha
+         })
+         const funcionariosAtualizado = await back.get(`funcionario`);
+         setFunc(funcionariosAtualizado.data);
+         alert("Funcionario Alterado com sucesso!");
+         setNome("")
+         setSenha("")
+         setEditando(false)
+      }catch(e){
+         alert("erro para editar")
+      }
+      
+   } 
   
 
     return (
@@ -68,18 +117,20 @@ function RegisterEmployee() {
                     {funcionarios.map((valor, index) => (
                   <Div key={index} className="funcinario-item">
                      <DivName>
-                        <TitleInput>{valor.func}</TitleInput>
+                        <TitleInput>{valor.id_func} - {valor.nome_func}</TitleInput>
                      </DivName>
-                     <DivButtonEdit>
+                     <DivButtonEdit onClick={() => {editarF(valor.id_func);}}>
                         <Icon
                            src="/src/assets/editar.png"
                         />
                      </DivButtonEdit>
-                     <DivButtonExcluir>
+                     {editando === false && (
+                        <DivButtonExcluir onClick={() => {excluirF(valor.id_func);}}>
                         <Icon
                            src="/src/assets/remover.png"
                         />
-                     </DivButtonExcluir>
+                        </DivButtonExcluir>
+                     )}
                   </Div>
                ))}
        
@@ -100,8 +151,16 @@ function RegisterEmployee() {
 
 
                     <DivButton>
-                        <ButtonRegister onClick={registerF}>Cadastrar Novo</ButtonRegister>
-                        <ButtonRegister>Salvar</ButtonRegister>
+                    {editando === false && (
+                     <ButtonRegister onClick={registerF}>Cadastrar Novo</ButtonRegister>
+                  )}
+                  
+                  {editando === true && (
+                            <>
+                                <ButtonRegister onClick={salvarEditarF}>Salvar</ButtonRegister>
+                                <ButtonRegister onClick={cancelarEditarF}>Cancelar</ButtonRegister>
+                            </>
+                        )}
                     </DivButton>
                 </Section>
             </DivSection>

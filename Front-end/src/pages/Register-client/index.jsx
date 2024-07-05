@@ -73,7 +73,7 @@ function RegisterClient() {
          setClientes([{ nome_cli: 'Nenhum Cliente' }]);
       }
    };
-
+   //Função para excluir cliente
    const excluirC = async (id) => {
       try{
          const response = await back.delete(`cliente/${id}`)
@@ -84,7 +84,7 @@ function RegisterClient() {
          alert("Falha ao excluir cliente");
       }
    }
-
+   //Função para editar cliente
    const editarC = (id) =>{
       setEditando(true)
       const cli = clientes.filter(cli => cli.id_cli === id)
@@ -95,7 +95,7 @@ function RegisterClient() {
       setDoc(cli[0].doc_cli)
       setTel(cli[0].tel_cli)
    }
-
+   //Função para cancelar edição
    const cancelarEditarC = () => {
       setEditando(false)
       setTipo('');
@@ -103,7 +103,7 @@ function RegisterClient() {
       setDoc('');
       setTel('');
    }
-
+   //Função para salvar Edição
    const salvarEditarC = async () => {
       try{
          const response = await back.put(`cliente/${idCliente}`,{
@@ -138,7 +138,7 @@ function RegisterClient() {
                {clientes.map((valor, index) => (
                   <Div key={index} className="cliente-item">
                      <DivName>
-                        <TitleInput id={valor.id_cli}>{valor.nome_cli}</TitleInput>
+                        <TitleInput id={valor.id_cli}>{valor.id_cli} - {valor.nome_cli}</TitleInput>
                      </DivName>
                      <DivButtonEdit onClick={() => {editarC(valor.id_cli);}}>
                         <Icon

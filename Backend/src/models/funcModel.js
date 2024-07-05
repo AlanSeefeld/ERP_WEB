@@ -35,20 +35,26 @@ const deletar = async (id) => {
     
 }
 //Função para criar funcionário
-const criar = async (nome,senha) => {
+const criar = async (nome, senha) => {
     const pool = await conexao; 
-    const consulta = await pool.request().query(`INSERT INTO [dbo].[funcionarios]
-                                                ([nome_func]
-                                                ,[senha_func]
-                                                ,[dt_cadastro]
-                                                ,[dt_alteracao])
-                                                VALUES
-                                                ('${nome}'
-                                                ,'${senha}'
-                                                ,CURRENT_TIMESTAMP
-                                                ,CURRENT_TIMESTAMP)`);
-    return consulta
+    const consulta = await pool.request()
+        .input('nome', nome)
+        .input('senha', senha)
+        .query(`INSERT INTO [dbo].[funcionarios]
+                ([nome_func]
+                ,[senha_func]
+                ,[dt_cadastro]
+                ,[dt_alteracao])
+                OUTPUT INSERTED.*
+                VALUES
+                (@nome
+                ,@senha
+                ,CURRENT_TIMESTAMP
+                ,CURRENT_TIMESTAMP)`);
+                
+    return consulta.recordset[0]; 
 }
+
 //Função para alterar funcionário pelo id
 const alterar = async (nome,senha,id) => {
     const pool = await conexao; 
