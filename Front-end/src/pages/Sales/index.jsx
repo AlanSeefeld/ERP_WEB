@@ -4,8 +4,10 @@ import Button from "../../components/Button"
 import TitleInput from "../../components/TitleInput"
 import SelectsGlobal from "../../components/Select";
 import OptionGlobal from "../../components/Options";
+import {back} from '../../config/config';
 
 function PageSales() {
+
 
     return (
         <DivPai>
@@ -17,7 +19,7 @@ function PageSales() {
                     <DivClient>
                         <TitleInput>Cliente</TitleInput>
                         <SelectsGlobal>
-                                <OptionGlobal>Cliente 2</OptionGlobal>
+                                <OptionGlobal>Cliente teste</OptionGlobal>
                                 <OptionGlobal>Cliente 1</OptionGlobal>
                                 <OptionGlobal>Cliente 3</OptionGlobal>
                                 <OptionGlobal>Cliente 4</OptionGlobal>

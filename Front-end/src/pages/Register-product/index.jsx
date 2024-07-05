@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import {back} from '../../config/config';
 
 function RegisterProduct() {
+   const [idProd,setId] = useState();
+   const [estoque,setEstoque] = useState()
     const [tipo,setTipo] = useState('')
     const [nome,setNome] = useState('')
     const [custo,setCusto] = useState()
@@ -17,6 +19,7 @@ function RegisterProduct() {
     //const [est,setEstoque] = useState(0)
     const [pesquisa, setPesquisa] = useState('');
     const [produtos, setProd] = useState([]);
+    const [editando,setEditando] = useState(false)
 
     useEffect(() => {
         const fetchProdutos = async () => {
@@ -34,7 +37,7 @@ function RegisterProduct() {
      const opcaoSelecionada = async (event) => {
         await setTipo(event.target.value);
      };
-
+     //Função para registrar produto
      const registerP = async () => {
         try {
            const response = await back.post('produto', {
@@ -45,6 +48,7 @@ function RegisterProduct() {
             com: com,
             est: 0
            });
+           produtos.push(response.data.produto)
            alert("Produto cadastrado com sucesso!");
            setTipo('');
            setNome('');
@@ -55,7 +59,7 @@ function RegisterProduct() {
            alert("Preencha todos os campos!",error);
         }
      };
-
+     //Função para pesquisar Produtos
      const pesquisaP = async (event) => {
         const valorPesquisa = event.target.value;
         setPesquisa(valorPesquisa);
@@ -71,6 +75,66 @@ function RegisterProduct() {
            setProd([{ nome_prod: 'Nenhum Produto' }]);
         }
      };
+     //Função para excluir Produto
+     const excluirP = async (id) => {
+      try{
+         const response = await back.delete(`produto/${id}`)
+         //console.log("deu")
+         setProd(prevProd => prevProd.filter(prod => prod.id_prod !== id));
+         alert("Produto excluido com sucesso!");
+      }catch(e){
+         alert("Falha ao excluir Produto");
+      }
+   }
+   //Função para editar Produto
+   const editarP = (id) =>{
+      setEditando(true)
+      const prod = produtos.filter(prod => prod.id_prod === id)
+      //console.log(prod[0])
+      setId(prod[0].id_prod)
+      setEstoque(prod[0].estoque_prod)
+      setTipo(prod[0].tp_prod);
+      setNome(prod[0].nome_prod);
+      setCusto(prod[0].custo_prod);
+      setPreco(prod[0].preco_prod);
+      setComissao(prod[0].comissao_prod);
+      
+   }
+   //Função para cancelar edição
+   const cancelarEditarP = () => {
+      setEditando(false)
+      setTipo("");
+      setNome("");
+      setCusto("");
+      setPreco("");
+      setComissao("");
+   }
+   //Função para salvar edição 
+   const salvarEditarP = async () => {
+      try{
+         const response = await back.put(`produto/${idProd}`,{
+            tipo: tipo,
+            nome: nome,
+            custo: custo,
+            preco: preco,
+            com: com,
+            est: estoque
+         })
+         const produtosAtualizado = await back.get(`produto`);
+         setProd(produtosAtualizado.data);
+         alert("Produto Alterado com sucesso!");
+         setTipo("");
+         setNome("");
+         setCusto("");
+         setPreco("");
+         setComissao("");
+         setEditando(false)
+      }catch(e){
+         alert("erro para editar")
+         console.log(e)
+      }
+      
+   } 
     
 
     return (
@@ -85,18 +149,20 @@ function RegisterProduct() {
                     {produtos.map((valor, index) => (
                   <Div key={index} className="produto-item">
                      <DivName>
-                        <TitleInput>{valor.nome_prod}</TitleInput>
+                        <TitleInput>{valor.id_prod} - {valor.nome_prod}</TitleInput>
                      </DivName>
-                     <DivButtonEdit>
+                     <DivButtonEdit onClick={() => {editarP(valor.id_prod);}}>
                         <Icon
                            src="/src/assets/editar.png"
                         />
                      </DivButtonEdit>
-                     <DivButtonExcluir>
+                     {editando === false && (
+                        <DivButtonExcluir onClick={() => {excluirP(valor.id_prod);}}>
                         <Icon
                            src="/src/assets/remover.png"
                         />
-                     </DivButtonExcluir>
+                        </DivButtonExcluir>
+                     )}
                   </Div>
                ))}
             
@@ -141,8 +207,16 @@ function RegisterProduct() {
 
 
                     <DivButton>
-                        <ButtonRegister onClick={registerP} >Cadastar Novo</ButtonRegister>
-                        <ButtonRegister>Salvar</ButtonRegister>
+                    {editando === false && (
+                     <ButtonRegister onClick={registerP}>Cadastrar Novo</ButtonRegister>
+                  )}
+                  
+                  {editando === true && (
+                            <>
+                                <ButtonRegister onClick={salvarEditarP}>Salvar</ButtonRegister>
+                                <ButtonRegister onClick={cancelarEditarP}>Cancelar</ButtonRegister>
+                            </>
+                        )}
                     </DivButton>
                 </Section>
             </DivSection>
