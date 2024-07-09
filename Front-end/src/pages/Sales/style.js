@@ -221,3 +221,41 @@ export const DivTitleInfos = styled.div`
   align-items: center;
   border-bottom: 1px solid;
 `;
+export const DivSearch = styled.div`
+  width: 100%;
+  height: 20px;
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: 1px solid black;
+`;
+export const Search = styled.input`
+     border:none;
+    width: 95%;
+    height: 20px;
+    text-align: center;
+    border-radius: 15px;
+    outline: none;
+    background-color: transparent;
+    color: black;
+    font-size: 20px;
+    
+    
+
+    ::placeholder {
+        color: #aaa; 
+        font-weight: bold;
+        font-size: 10px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+`
+export const DivName = styled.div`
+  width: 100%;
+  height: 80%;
+
+  &:hover {
+  background-color: red;
+    cursor: pointer;
+  }
+
+`

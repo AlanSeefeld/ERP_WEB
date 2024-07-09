@@ -1,10 +1,11 @@
 import { SelectGlobal } from "./style";
 
-function SelectsGlobal({children}){
+function SelectsGlobal({children,onClick}){
 
     return(
         <>
-        <SelectGlobal>
+        <SelectGlobal
+                onClick={onClick}>
              {children}
         </SelectGlobal>
         </>
